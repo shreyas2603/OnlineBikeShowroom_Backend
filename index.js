@@ -1,26 +1,33 @@
+// app.js
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const app = express();
-const router = express.Router();
+const port = 4000;
 const apiRoutes = require('./routes/api');
+const userRoutes = require('./routes/users');
 
-const corsOptions = {
-  origin: 'http://localhost:3000', // Replace with the actual origin of your frontend
-};
+app.use(cors());
 
-app.use(cors(corsOptions));
-// Connect to your MongoDB database
-mongoose.set("strictQuery",true);
-mongoose.connect("mongodb+srv://bikes:12345@bikes.6dagdtd.mongodb.net/bikes");
-var db = mongoose.connection;
-db.on("open", () => console.log("Connected to DB"));
-db.on("error", () => console.log("Error occurred while connecting with DB"));
+// Connect to MongoDB (replace 'your-database-uri' with your MongoDB URI)
+mongoose.connect('mongodb+srv://bikes:12345@bikes.6dagdtd.mongodb.net/bikes', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+})
+.then(() => {
+  console.log('Connected to MongoDB');
+})
+.catch((error) => {
+  console.error('Error connecting to MongoDB:', error);
+});
 
 
+app.use(express.json());
 
-const port = process.env.PORT || 4000;
-app.use('/api',apiRoutes);
+app.use('/users',userRoutes);
+app.use('/api', apiRoutes); // This mounts the routes under the /api namespace
+
+
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
