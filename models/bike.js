@@ -1,3 +1,4 @@
+// models/bike.js
 const mongoose = require('mongoose');
 
 const bikeSchema = new mongoose.Schema({
@@ -9,6 +10,9 @@ const bikeSchema = new mongoose.Schema({
   imageblack: String,
   imageblue: String,
   imagered: String,
+  EngineCapacity: String,
+  FuelTankCapacity: String,
+  SeatHeight : Number,
 }, {
   collection: 'bikeDetails' // Specify the collection name
 });
