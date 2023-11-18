@@ -128,7 +128,7 @@ router.post('/orders', async (req, res) => {
           theme: {
             color: '#F37254',
           },
-          callback_url: "http://localhost:4000/api/success", // Update the server-side route
+          callback_url: "https://bikeshowroom-backend.onrender.com/api/success", // Update the server-side route
  // Redirect to the success page
         },
       });
