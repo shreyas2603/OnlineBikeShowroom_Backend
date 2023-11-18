@@ -146,7 +146,7 @@ router.post('/success', (req, res) => {
   // Handle the POST request for the success page
   // You can perform any necessary actions here
   //res.json({ message: 'Payment successful! Redirect to success page.' });
-  res.redirect('http://localhost:3000/#/success'); // Redirect to the frontend success page
+  res.redirect('https://bike-showroom-seven.vercel.app/#/success'); // Redirect to the frontend success page
 });
 
 
